@@ -1,0 +1,28 @@
+server:
+  port: 8222
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      import: "optional:configserver:http://localhost:8888"
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: customer-service-route
+          uri: lb://customer-service
+          predicates:
+            - Path=/api/customers/**
+        - id: account-service-route
+          uri: lb://account-service
+          predicates:
+            - Path=/api/accounts/**
+        - id: transaction-service-route
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/transactions/**
+
+        

@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ChongChi-hub/dummy-config-repo # We don't really need a real git repo for this exercise since we're using local configs via config server native profile, wait, the exercise says: "Đảm bảo đã có Config Server (8888), Eureka Server...". To make it simple, we can just use native profile.
+  profiles:
+    active: native
